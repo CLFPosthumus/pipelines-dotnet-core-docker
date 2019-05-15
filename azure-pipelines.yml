@@ -18,7 +18,6 @@ steps:
     az acr login -n marietposthumus -u marietposthumus -p aHNZS4zJZyzsGla/9JvkF/TtLtFS6gFV -g containergroup --subscription 772b2fb6-7318-4717-a013-09a2fe73151a
     docker build -t $(dockerId).azurecr.io/$(imageName) .
     docker push marietposthumus.azurecr.io/marietposthumus:v1
-    az container create --resource-group containergroup --name marietposthumus --image marietposthumus.azurecr.io/marietposthumus:v1 --dns-name-label marietposthumus --ports 80 --location westeurope
 
   env:
     pswd: $(dockerPassword)
