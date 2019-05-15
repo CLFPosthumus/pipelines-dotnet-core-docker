@@ -15,7 +15,7 @@ variables:
 
 steps:
 - script: |
-    az acr login -n marietposthumus
+    az acr login -n marietposthumus -u marietposthumus -p aHNZS4zJZyzsGla/9JvkF/TtLtFS6gFV -g containergroup --subscription 772b2fb6-7318-4717-a013-09a2fe73151a
     docker build -t $(dockerId).azurecr.io/$(imageName) .
     docker login -u $(dockerId) -p pswd $(dockerId).azurecr.io
     docker push marietposthumus.azurecr.io/marietposthumus:v1
