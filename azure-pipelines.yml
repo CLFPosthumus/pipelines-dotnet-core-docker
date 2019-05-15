@@ -11,13 +11,12 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  dockerId: marietposthumus
   imageName: marietposthumus:v1
 
 steps:
 - script: |
     docker build -t $(dockerId).azurecr.io/$(imageName) .
-    docker login -u $(dockerId) -p $(pswd) $(dockerId).azurecr.io
+    docker login -u $(dockerId) -p pswd $(dockerId).azurecr.io
     docker push $(dockerId).azurecr.io/$(imageName)
   env:
     pswd: $(dockerPassword)  
