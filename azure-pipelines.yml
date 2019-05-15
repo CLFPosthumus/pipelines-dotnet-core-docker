@@ -15,13 +15,17 @@ variables:
 
 steps:
 - script: |
+    az acr login -n marietposthumus
     docker build -t $(dockerId).azurecr.io/$(imageName) .
     docker login -u $(dockerId) -p pswd $(dockerId).azurecr.io
-    docker push $(dockerId).azurecr.io/$(imageName)
+    docker push marietposthumus.azurecr.io/marietposthumus:v1
+    az container create --resource-group containergroup --name marietposthumus --image marietposthumus.azurecr.io/marietposthumus:v1 --dns-name-label marietposthumus --ports 80 --location westeurope
+
   env:
-    pswd: $(dockerPassword)  
+    pswd: $(dockerPassword)
 
 # docker build -t marietposthumus .
 # >> docker tag marietposthumus:latest marietposthumus.azurecr.io/marietposthumus:v1
 # >> docker push marietposthumus.azurecr.io/marietposthumus:v1
 # >> az container create --resource-group containergroup --name marietposthumus --image marietposthumus.azurecr.io/marietposthumus:v1 --dns-name-label marietposthumus --ports 80 --location westeurope
+
