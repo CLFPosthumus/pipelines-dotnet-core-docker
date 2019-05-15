@@ -17,10 +17,7 @@ variables:
 steps:
 - script: |
     docker build -t $(dockerId).azurecr.io/$(imageName) .
-    echo | set /p=$(pswd) | docker login --username marietposthumus --password-stdin
-
-
-    docker login -u $(dockerId)  --password-stdin $(dockerId).azurecr.io
+    echo | set /p=$(pswd) | docker login --username marietposthumus --password-stdin $(dockerId).azurecr.io
     docker push $(dockerId).azurecr.io/$(imageName)
   env:
     pswd: $(dockerPassword) 
